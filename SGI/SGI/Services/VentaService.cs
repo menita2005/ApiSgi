@@ -12,26 +12,26 @@ namespace SGI.Services
             _context = context;
         }
 
-        public async Task<decimal> CalcularPrecioUnitario(VentaItem detalle)
+        public async Task<Double> CalcularPrecioUnitario(VentaItem detalle)
         {
           
-            return (decimal)detalle.Precio;
+            return (Double)detalle.Precio;
         }
 
-        public async Task<decimal> CalcularSubtotalVentaDetalle(VentaItem detalle)
+        public async Task<Double> CalcularSubtotalVentaDetalle(VentaItem detalle)
         {
-            decimal precioUnitario = await CalcularPrecioUnitario(detalle);
+            Double precioUnitario = await CalcularPrecioUnitario(detalle);
             detalle.Subtotal = precioUnitario * detalle.Cantidad;
 
-            return (decimal)detalle.Subtotal;
+            return (Double)detalle.Subtotal;
         }
 
-        public decimal CalcularTotalVentaDetalles(List<VentaItem> detalles)
+        public Double CalcularTotalVentaDetalles(List<VentaItem> detalles)
         {
-            decimal total = 0;
+            Double total = 0;
             foreach (var detalle in detalles)
             {
-                total += (decimal)detalle.Subtotal;
+                total += (double)detalle.Subtotal;
             }
 
             return total;

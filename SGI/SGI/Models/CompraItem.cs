@@ -10,7 +10,7 @@ namespace SGI.Models
         public int CompraId { get; set; }
         [Required]
         public int ProductoId { get; set; }
-        public decimal? Precio { get; set; } = 0;
+        public double? Precio { get; set; } = 0;
         [Required]
         public int Cantidad { get; set; } = 1;
         [ForeignKey("CompraId")]
@@ -19,6 +19,6 @@ namespace SGI.Models
         [ForeignKey("ProductId")]
         public Producto? Producto { get; set; }
 
-        public decimal? Subtotal { get; set; } = 0;
+        public double? Subtotal { get; set; } = 0;
     }
 }

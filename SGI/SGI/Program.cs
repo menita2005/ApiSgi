@@ -13,7 +13,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(connectionString));
 //Inyectar la interfaz a la clase
-builder.Services.AddScoped<IVentaService, ICompraService ,CompraService,  VentaService>();
+builder.Services.AddScoped<IVentaService,  VentaService>();
+
+builder.Services.AddScoped<ICompraService, CompraService>();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

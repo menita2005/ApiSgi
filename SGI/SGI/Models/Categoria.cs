@@ -10,7 +10,7 @@ namespace SGI.Models
         [MaxLength(64)]
 
         public required string Nombre { get; set; }
-        // Otros campos relevantes para una categoría
+        
     }
 
 }

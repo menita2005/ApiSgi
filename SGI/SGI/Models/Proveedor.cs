@@ -14,7 +14,7 @@ namespace SGI.Models
         public required string Contacto { get; set; }
         public ICollection<Producto>? Productos { get; set; }
 
-        // Otros campos relevantes
+       
     }
 
 }

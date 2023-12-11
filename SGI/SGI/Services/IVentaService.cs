@@ -4,9 +4,9 @@ namespace SGI.Services
 {
     public interface IVentaService
     {
-        Task<decimal> CalcularPrecioUnitario(VentaItem detalle);
-        Task<decimal> CalcularSubtotalVentaDetalle(VentaItem detalle);
-        decimal CalcularTotalVentaDetalles(List<VentaItem> detalles);
+        Task<Double> CalcularPrecioUnitario(VentaItem detalle);
+        Task<Double> CalcularSubtotalVentaDetalle(VentaItem detalle);
+        Double CalcularTotalVentaDetalles(List<VentaItem> detalles);
     }
 }
 

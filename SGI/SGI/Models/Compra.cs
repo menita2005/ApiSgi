@@ -25,7 +25,7 @@ namespace SGI.Models
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "El total debe ser mayor que cero.")]
-        public decimal Total { get; set; }
+        public Double Total { get; set; }
 
         [Required]
         public string NumeroCompra { get; set; } = Guid.NewGuid().ToString(); // Genera un nuevo GUID como número de compra único
@@ -33,7 +33,7 @@ namespace SGI.Models
         public virtual ICollection<CompraItem>? CompraItems { get; set; }
 
         [NotMapped] // No se mapea a la base de datos
-        public decimal TotalMonto { get; set; } // Puedes calcularlo según tus necesidades
+        public Double TotalMonto { get; set; } // Puedes calcularlo según tus necesidades
     }
 }
 

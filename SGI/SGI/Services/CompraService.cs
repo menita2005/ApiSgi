@@ -22,28 +22,28 @@ namespace SGI.Services
             return producto;
         }
 
-        public async Task<decimal> CalcularPrecioUnitario(CompraItem detalle)
+        public async Task<double> CalcularPrecioUnitario(CompraItem detalle)
         {
             var producto = await ObtenerProductoPorId(detalle.ProductoId);
             detalle.Precio = producto.Precio;
 
-            return (decimal)detalle.Precio;
+            return (double)detalle.Precio;
         }
 
-        public async Task<decimal> CalcularSubtotalCompraDetalle(CompraItem detalle)
+        public async Task<double> CalcularSubtotalCompraDetalle(CompraItem detalle)
         {
-            decimal precioUnitario = await CalcularPrecioUnitario(detalle);
+            double precioUnitario = await CalcularPrecioUnitario(detalle);
             detalle.Subtotal = precioUnitario * detalle.Cantidad;
 
-            return (decimal)detalle.Subtotal;
+            return (double)detalle.Subtotal;
         }
 
-        public decimal CalcularTotalCompraDetalles(List<CompraItem> detalles)
+        public double CalcularTotalCompraDetalles(List<CompraItem> detalles)
         {
-            decimal total = 0;
+            double total = 0;
             foreach (var detalle in detalles)
             {
-                total += (decimal)detalle.Subtotal;
+                total += (double)detalle.Subtotal;
             }
 
             return total;

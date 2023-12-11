@@ -5,8 +5,8 @@ namespace SGI.Services
 
     public interface ICompraService
     {
-        Task<decimal> CalcularPrecioUnitario(CompraItem detalle);
-        Task<decimal> CalcularSubtotalCompraDetalle(CompraItem detalle);
-        decimal CalcularTotalCompraDetalles(List<CompraItem> detalles);
+        Task<double> CalcularPrecioUnitario(CompraItem detalle);
+        Task<double> CalcularSubtotalCompraDetalle(CompraItem detalle);
+        double CalcularTotalCompraDetalles(List<CompraItem> detalles);
     }
 }
