@@ -9,36 +9,36 @@ namespace ProyectApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProveedoresController : ControllerBase
+    public class SupplierController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ProveedoresController(ApplicationDbContext context)
+        public SupplierController(ApplicationDbContext context)
         {
             this._context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proveedores>>> Get()
+        public async Task<ActionResult<IEnumerable<Proveedor>>> Get()
         {
-            var proveedores = await _context.Proveedores.ToListAsync();
+            var proveedores = await _context.Proveedor.ToListAsync();
             if (proveedores == null || !proveedores.Any())
             {
                 return NotFound();
             }
 
-            return proveedores;
+            return Ok(proveedores);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Proveedores>> Get(int id)
+        public async Task<ActionResult<Proveedor>> Get(int id)
         {
-            if (_context.Proveedores == null)
+            if (_context.Proveedor == null)
             {
                 return NotFound();
             }
 
-            var proveedor = await _context.Proveedores.FindAsync(id);
+            var proveedor = await _context.Proveedor.FindAsync(id);
 
             if (proveedor == null)
             {
@@ -49,20 +49,20 @@ namespace ProyectApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Proveedores>> Post([FromBody] Proveedores proveedor)
+        public async Task<ActionResult<Proveedor>> Post([FromBody] Proveedor proveedor)
         {
-            if (_context.Proveedores == null)
+            if (proveedor == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Proveedores' is null.");
+                return BadRequest("Proveedor es nulo");
             }
 
-            _context.Proveedores.Add(proveedor);
+            _context.Proveedor.Add(proveedor);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = proveedor.Id }, proveedor);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Proveedores proveedor)
+        public async Task<IActionResult> Put(int id, [FromBody] Proveedor proveedor)
         {
             if (id != proveedor.Id)
             {
@@ -93,26 +93,26 @@ namespace ProyectApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (_context.Proveedores is null)
+            if (_context.Proveedor == null)
             {
                 return NotFound();
             }
 
-            var proveedor = await _context.Proveedores.FirstOrDefaultAsync(p => p.Id == id);
+            var proveedor = await _context.Proveedor.FirstOrDefaultAsync(p => p.Id == id);
 
             if (proveedor == null)
             {
                 return NotFound();
             }
 
-            _context.Proveedores.Remove(proveedor);
+            _context.Proveedor.Remove(proveedor);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
         private bool ProveedorExists(int id)
         {
-            return (_context.Proveedores?.Any(p => p.Id == id)).GetValueOrDefault();
+            return (_context.Proveedor?.Any(p => p.Id == id)).GetValueOrDefault();
         }
     }
 }

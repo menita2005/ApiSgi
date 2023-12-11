@@ -8,17 +8,17 @@ namespace SGI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductosController : ControllerBase
+    public class ProductoController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ProductosController(ApplicationDbContext context)
+        public ProductoController(ApplicationDbContext context)
         {
             this._context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Productos>>> Get()
+        public async Task<ActionResult<IEnumerable<Producto>>> Get()
         {
             var productos = await _context.Productos.ToListAsync();
             if (productos == null || !productos.Any())
@@ -30,7 +30,7 @@ namespace SGI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Productos>> Get(int id)
+        public async Task<ActionResult<Producto>> Get(int id)
         {
             if (_context.Productos == null)
             {
@@ -48,7 +48,7 @@ namespace SGI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Productos>> Post([FromBody] Productos producto)
+        public async Task<ActionResult<Producto>> Post([FromBody] Producto producto)
         {
             if (_context.Productos == null)
             {
@@ -61,7 +61,7 @@ namespace SGI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Productos producto)
+        public async Task<IActionResult> Put(int id, [FromBody] Producto producto)
         {
             if (id != producto.Id)
             {

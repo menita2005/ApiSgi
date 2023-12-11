@@ -7,19 +7,19 @@ namespace SGI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriasController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriasController(ApplicationDbContext context)
+        public CategoriaController(ApplicationDbContext context)
         {
             this._context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Categorias>>> Get()
+        public async Task<ActionResult<IEnumerable<Categoria>>> Get()
         {
-            var categorias = await _context.Categorias.ToListAsync();
+            var categorias = await _context.Categoria.ToListAsync();
             if (categorias == null || !categorias.Any())
             {
                 return NotFound();
@@ -29,14 +29,14 @@ namespace SGI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Categorias>> Get(int id)
+        public async Task<ActionResult<Categoria>> Get(int id)
         {
-            if (_context.Categorias == null)
+            if (_context.Categoria == null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = await _context.Categoria.FindAsync(id);
 
             if (categoria == null)
             {
@@ -47,20 +47,20 @@ namespace SGI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Categorias>> Post([FromBody] Categorias categoria)
+        public async Task<ActionResult<Categoria>> Post([FromBody] Categoria categoria)
         {
-            if (_context.Categorias == null)
+            if (_context.Categoria == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Categorias' is null.");
             }
 
-            _context.Categorias.Add(categoria);
+            _context.Categoria.Add(categoria);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = categoria.Id }, categoria);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Categorias categoria)
+        public async Task<IActionResult> Put(int id, [FromBody] Categoria categoria)
         {
             if (id != categoria.Id)
             {
@@ -91,26 +91,26 @@ namespace SGI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (_context.Categorias is null)
+            if (_context.Categoria is null)
             {
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.Id == id);
+            var categoria = await _context.Categoria.FirstOrDefaultAsync(c => c.Id == id);
 
             if (categoria == null)
             {
                 return NotFound();
             }
 
-            _context.Categorias.Remove(categoria);
+            _context.Categoria.Remove(categoria);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
         private bool CategoriaExists(int id)
         {
-            return (_context.Categorias?.Any(c => c.Id == id)).GetValueOrDefault();
+            return (_context.Categoria?.Any(c => c.Id == id)).GetValueOrDefault();
         }
     }
 }

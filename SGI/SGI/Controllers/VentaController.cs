@@ -8,19 +8,19 @@ namespace SGI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VentasController : ControllerBase
+    public class VentaController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public VentasController(ApplicationDbContext context)
+        public VentaController(ApplicationDbContext context)
         {
             this._context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ventas>>> Get()
+        public async Task<ActionResult<IEnumerable<Venta>>> Get()
         {
-            var ventas = await _context.Ventas.ToListAsync();
+            var ventas = await _context.Venta.ToListAsync();
             if (ventas == null || !ventas.Any())
             {
                 return NotFound();
@@ -30,14 +30,14 @@ namespace SGI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ventas>> Get(int id)
+        public async Task<ActionResult<Venta>> Get(int id)
         {
-            if (_context.Ventas == null)
+            if (_context.Venta == null)
             {
                 return NotFound();
             }
 
-            var venta = await _context.Ventas.FindAsync(id);
+            var venta = await _context.Venta.FindAsync(id);
 
             if (venta == null)
             {
@@ -48,20 +48,20 @@ namespace SGI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Ventas>> Post([FromBody] Ventas venta)
+        public async Task<ActionResult<Venta>> Post([FromBody] Venta venta)
         {
-            if (_context.Ventas == null)
+            if (_context.Venta == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Ventas' is null.");
             }
 
-            _context.Ventas.Add(venta);
+            _context.Venta.Add(venta);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = venta.Id }, venta);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Ventas venta)
+        public async Task<IActionResult> Put(int id, [FromBody] Venta venta)
         {
             if (id != venta.Id)
             {
@@ -92,26 +92,26 @@ namespace SGI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (_context.Ventas is null)
+            if (_context.Venta is null)
             {
                 return NotFound();
             }
 
-            var venta = await _context.Ventas.FirstOrDefaultAsync(v => v.Id == id);
+            var venta = await _context.Venta.FirstOrDefaultAsync(v => v.Id == id);
 
             if (venta == null)
             {
                 return NotFound();
             }
 
-            _context.Ventas.Remove(venta);
+            _context.Venta.Remove(venta);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
         private bool VentaExists(int id)
         {
-            return (_context.Ventas?.Any(v => v.Id == id)).GetValueOrDefault();
+            return (_context.Venta?.Any(v => v.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -9,10 +9,12 @@ public class ApplicationDbContext : DbContext
 
         }
 
-        public DbSet<Proveedores> Proveedores { get; set; }
-        public DbSet<Productos> Productos { get; set; }
-        public DbSet<Ventas> Ventas { get; set; }
-        public DbSet<Compras> Compras { get; set; }
-        public DbSet<Categorias> Categorias { get; set; }
-    }
+        public DbSet<Proveedor> Proveedor { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Venta> Venta { get; set; }
+        public DbSet<Compra> Compra { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<CompraItem> CompraItem { get; set; }
+        public DbSet<VentaItem> VentaItem { get; set; }
+}
 
