@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SGI.Migrations
 {
     /// <inheritdoc />
-    public partial class Tester : Migration
+    public partial class tester : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

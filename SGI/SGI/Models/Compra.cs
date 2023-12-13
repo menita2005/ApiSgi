@@ -17,13 +17,13 @@ namespace SGI.Models
         public int ProductoId { get; set; }
 
         [ForeignKey("ProductoId")]
-        public Producto Producto { get; set; }
+        public Producto? Producto { get; set; }
 
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor que cero.")]
         public int Cantidad { get; set; }
 
-        [Required]
+        
         [Range(0.01, double.MaxValue, ErrorMessage = "El total debe ser mayor que cero.")]
         public Double Total { get; set; }
 

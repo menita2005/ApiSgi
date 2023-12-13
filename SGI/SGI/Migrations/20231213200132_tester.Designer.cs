@@ -12,8 +12,8 @@ using SGI.Data;
 namespace SGI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231211220934_Tester")]
-    partial class Tester
+    [Migration("20231213200132_tester")]
+    partial class tester
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

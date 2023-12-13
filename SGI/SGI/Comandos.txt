@@ -1,0 +1,13 @@
+﻿{
+  "id": 0,
+  "fecha": "2023-12-13T20:07:26.334Z",
+  "productoId": 1,
+  
+  "cantidad": 5,
+  
+  "total": 20000
+}
+
+
+usuario server :sqlapisgi
+password: Juegosfriv.2005
